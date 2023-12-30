@@ -27,7 +27,7 @@ jobs:
       run : |
         mkdir assets; cd assets
         HASH=`echo "${{ inputs.url }}" | sha1sum`
-        wget "${{ inputs.url }}" --warc-file="${HASH:0:40}" --no-warc-keep-log -mpckE --user-agent="" -e robots=off
+        wget --warc-file="${HASH:0:40}" --no-warc-keep-log -r -l1 -pkE --user-agent="" -e robots=off "${{ inputs.url }}"
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4.0.0
