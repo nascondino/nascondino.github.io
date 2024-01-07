@@ -21,5 +21,5 @@ title: DMCA
 
 <h2>Reporting copyright infringement</h2>
 <p>If you would like to notify us of the infringing material or activity, we encourage you to contact us using the details below:</p>
-<p>100277871+nascondino@users.noreply.github.com</p>
+<p>100277871+nascondino@users.noreply.github.com  /  nascondino@cock.li</p>
 <p>This document was last updated on March 15, 2022</p>
