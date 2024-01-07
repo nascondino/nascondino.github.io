@@ -1,0 +1,18 @@
+---
+layout: page
+title: Capabilities
+permalink: /capabilities/
+hidenav: true
+---
+
+<ul class="list  list--posts">
+  {% for cat in site.categories %}
+    <li class="item  item--post">{% if cat[0] %}{{ cat[0] }}{% endif %}
+        <ul>
+            {% for post in cat.last %}
+              <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+  {% endfor %}
+</ul>
