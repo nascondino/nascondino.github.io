@@ -1,0 +1,26 @@
+# Set theme
+remote_theme: daviddarnes/garth
+
+# File excludes
+exclude:
+- README.md
+- Gemfile
+- Gemfile.lock
+
+# Set plugins
+plugins:
+- jekyll-paginate
+- jekyll-remote-theme
+
+# Site settings
+baseurl: ''
+title: 'Nascondino'
+permalink: /companies/:title:output_ext
+logo: "/logo.png"
+
+# Collections
+collections:
+  posts:
+    title: Nascondino
+    output: true
+    description: "About spyware and digital surveillance technologies in Italy: 'Pizza, spaghetti, and spyware'."

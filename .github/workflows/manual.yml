@@ -1,0 +1,50 @@
+name: TimeMachine
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL'
+        default: ''
+        required: true
+        type: string
+
+jobs:
+  wayback:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install wget
+      run : |
+        sudo apt-get update && sudo apt-get install -y wget
+
+    - name: Create WARC file
+      run : |
+        mkdir assets; cd assets
+        HASH=`echo "${{ inputs.url }}" | sha1sum`
+        wget --warc-file="${HASH:0:40}" --no-warc-keep-log -r -l1 -pkE --user-agent="" -e robots=off "${{ inputs.url }}"
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4.0.0
+      with:
+        name: output
+        path: assets/*.warc.gz
+
+    - name: Commit Artifact
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: Wayback Artifact
+        file_pattern: 'assets/*.warc.gz'
+        # Optional commit user and author settings
+        commit_user_name: nascondino
+        commit_author: nascondino <nascondino>
+        disable_globbing: true
+
+    - name: Save on WaybackMachine
+      run : |
+        wget "https://web.archive.org/save/${{ inputs.url }}"
